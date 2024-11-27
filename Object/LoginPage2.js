@@ -8,7 +8,7 @@ class LoginPage2 {
 
   async goto() {
     await this.page.goto(
-      "https://128.140.100.5:8443/prweb/app/av-retail-loan/",
+      "https://116.203.194.160:8443/prweb/app/av-retail-loan/",
       { ignoreHTTPSErrors: true }
     );
   }
@@ -20,4 +20,4 @@ class LoginPage2 {
   }
 }
 
-module.exports = { LoginPage2 };
+module.exports = { LoginPage2 };  
