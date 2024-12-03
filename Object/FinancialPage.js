@@ -24,7 +24,7 @@ class Financialpage {
     );
     this.state2 = this.page.locator('[data-testid="State :select:control"]');
     this.AddressLine1 = this.page.locator(
-      '[data-testid="Address Line 1:input:control"]'
+      '[data-testid="Address Line 1 :input:control"]'
     );
     this.AddressLine2 = this.page.locator(
       '[data-testid="Address Line 2:input:control"]'
@@ -70,27 +70,34 @@ class Financialpage {
     await this.fileinput.setInputFiles(
       "C:/Users/AjmalbashaAllabasha/Desktop/Smart Lender/tests/test image2.png"
     );
+    await this.page.waitForTimeout(5000);
     await this.fileinput1.setInputFiles([
       "C:/Users/AjmalbashaAllabasha/Desktop/Smart Lender/tests/test image2.png",
       "C:/Users/AjmalbashaAllabasha/Desktop/Smart Lender/tests/test image1.png",
     ]);
+    await this.page.waitForTimeout(5000);
     await this.fileinput2.setInputFiles([
       "C:/Users/AjmalbashaAllabasha/Desktop/Smart Lender/tests/test image2.png",
       "C:/Users/AjmalbashaAllabasha/Desktop/Smart Lender/tests/test image1.png",
     ]);
+    await this.page.waitForTimeout(5000);
     await this.fileinput3.setInputFiles(
       "C:/Users/AjmalbashaAllabasha/Desktop/Smart Lender/tests/test image2.png"
     );
+    await this.page.waitForTimeout(5000);
     await this.fileinput4.setInputFiles(
       "C:/Users/AjmalbashaAllabasha/Desktop/Smart Lender/tests/test image2.png"
     );
+    await this.page.waitForTimeout(5000);
     await this.fileinput5.setInputFiles([
       "C:/Users/AjmalbashaAllabasha/Desktop/Smart Lender/tests/test image2.png",
       "C:/Users/AjmalbashaAllabasha/Desktop/Smart Lender/tests/test image1.png",
     ]);
+    await this.page.waitForTimeout(5000);
     await this.fileinput6.setInputFiles(
       "C:/Users/AjmalbashaAllabasha/Desktop/Smart Lender/tests/test image2.png"
     );
+    await this.page.waitForTimeout(5000);
     await this.submitButton.click();
   }
 }

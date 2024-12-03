@@ -6,12 +6,11 @@ const { EstablishmentPage } = require("../Object/EstablishmentPage");
 const { Financialpage } = require("../Object/FinancialPage");
 const { Acknowledgementpage } = require("../Object/AcknowledgementPage");
 const { readExcel } = require("../Utils/readExcel");
- 
+
 const filePath =
   "C:\\Users\\AjmalbashaAllabasha\\Desktop\\Smart Lender\\tests\\TestData.xlsx";
 const sheetName = "Sheet1";
- 
- 
+
 async function loadTestData() {
   const testData = await readExcel(filePath, sheetName);
   if (!testData.length) {
@@ -21,27 +20,24 @@ async function loadTestData() {
   }
   return testData;
 }
- 
+
 test.describe("Smart Lender Test Suite", () => {
   let testData;
- 
- 
+
   test.beforeAll(async () => {
     testData = await loadTestData();
   });
- 
- 
+
   test("Basic Test Check", async () => {
     console.log("Test file is detected");
   });
- 
- 
+
   test("Execute Test Cases for Each Data Row", async ({ browser }) => {
     if (!testData || testData.length === 0) {
       console.error("Test data is empty or not loaded.");
       return;
     }
- 
+
     // Using `for...of` loop for sequential execution
     for (const [index, data] of testData.entries()) {
       const {
@@ -96,13 +92,13 @@ test.describe("Smart Lender Test Suite", () => {
         City2,
         zipcode2,
       } = data;
- 
+
       console.log(`Executing Demo Test - Case ${index + 1}`);
- 
+
       // Create new browser context
       const context = await browser.newContext({ ignoreHTTPSErrors: true });
       const page = await context.newPage();
- 
+
       // Initialize page objects
       const loginpage = new LoginPage(page);
       const loanapplicationpage = new LoanApplicationPage(page);
@@ -110,7 +106,7 @@ test.describe("Smart Lender Test Suite", () => {
       const establishmentPage = new EstablishmentPage(page);
       const financialdetailspage = new Financialpage(page);
       const acknowledgementpage = new Acknowledgementpage(page);
- 
+
       try {
         // Perform test steps
         await loginpage.goto();

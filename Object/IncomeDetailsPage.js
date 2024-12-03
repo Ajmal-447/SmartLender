@@ -26,10 +26,10 @@ class IncomeDetailsPage {
 
     this.state = this.page.getByLabel("State ");
     this.address = this.page.locator(
-      '[data-testid="AddressLine1:input:control"]'
+      '[data-testid="Address Line 1:input:control"]'
     );
     this.address1 = this.page.locator(
-      '[data-testid="AddressLine2:input:control"]'
+      '[data-testid="Address Line 2:input:control"]'
     );
     this.city = this.page.locator('[data-testid="City/Town:input:control"]');
     this.zipcode = this.page.locator('[data-testid="Zip Code:input:control"]');

@@ -9,7 +9,7 @@ class EstablishmentPage {
     );
     this.state1 = this.page.getByLabel("State ");
     this.address2 = this.page.locator(
-      '[data-testid="Address Line 1:input:control"]'
+      '[data-testid="Address Line 1 :input:control"]'
     );
     this.address3 = this.page.locator(
       '[data-testid="Address Line 2:input:control"]'

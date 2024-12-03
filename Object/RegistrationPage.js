@@ -16,7 +16,7 @@ class RegistrationPage {
     );
     this.country = this.page.locator('[data-testid="Country :select:control"]');
     this.address = this.page.locator(
-      '[data-testid="Address Line 1:input:control"]'
+      '[data-testid="Address Line 1 :input:control"]'
     );
     this.address1 = this.page.locator(
       '[data-testid="Address Line 2:input:control"]'
