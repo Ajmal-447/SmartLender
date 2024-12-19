@@ -22,7 +22,7 @@ class PersonalDetailsPage {
 
     this.state = this.page.getByLabel("State ");
     this.address = this.page.locator(
-      '[data-testid="Address Line 1 :input:control"]'
+      '[data-testid="Address Line 1:input:control"]'
     );
     this.address1 = this.page.locator(
       '[data-testid="Address Line 2:input:control"]'
