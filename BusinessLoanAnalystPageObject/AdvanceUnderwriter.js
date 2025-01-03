@@ -1,9 +1,9 @@
-class BusinessAnalyst {
+class BusinessAnalystUnderWriting {
   constructor(page) {
     this.page = page;
     this.getnextwork = page.getByRole("button", { name: "Get next work" });
     this.LoanAmount = page.locator(
-      '[data-testid="Loan Amount:number-input:control"]'
+      "xpath=/html/body/app-root/div/div[1]/div/main/div/div/div[2]/div[1]/div[2]/div/article/div/li/article/div/form/div[1]/div/div/fieldset/div/div/div/div[1]/fieldset/div/div/div/div[1]/div[1]/div/div/input"
     );
     this.TenurePeriod = page.locator(
       '[data-testid="Tenure Period:number-input:control"]'
@@ -15,9 +15,8 @@ class BusinessAnalyst {
       '[data-testid="Approval Decision:select:control"]'
     );
     this.ConformButton = page.locator(
-      "xpath=/html/body/app-root/div/div[1]/div/main/div/div/div[2]/div[1]/div[2]/div/article/div/li/article/div/form/div[1]/div/div/fieldset/div/div/div/div[8]/fieldset/div/div/div/div[1]/div[8]/fieldset/div[1]/div/label/div"
+      "xpath=/html/body/app-root/div/div[1]/div/main/div/div/div[2]/div[1]/div[2]/div/article/div/li/article/div/form/div[1]/div/div/fieldset/div/div/div/div[8]/fieldset/div/div/div/div[1]/div[7]/fieldset/div[1]/div/label/div"
     );
-    
     this.SubmitButton = page.getByRole("button", { name: "submit" });
   }
 
@@ -35,10 +34,9 @@ class BusinessAnalyst {
     await this.AnalystFeedback.fill(feedback);
     await this.Approval.selectOption(Decision);
     await this.ConformButton.click();
-    await this.SubmitButton.click();
     await this.page.screenshot({ path: "screenshot.png" });
-    await this.page.pause();
+    await this.SubmitButton.click();
   }
 }
 
-module.exports = { BusinessAnalyst };
+module.exports = { BusinessAnalystUnderWriting };
