@@ -5,8 +5,8 @@ const {
   BusinessAnalystLogin,
 } = require("../../BusinessLoanAnalystPageObject/BusinessLoanAnalystLoginPage");
 const {
-  BusinessAnalyst,
-} = require("../../BusinessLoanAnalystPageObject/BusinessPage");
+  BusinessAdditionalinformation,
+} = require("../../BusinessLoanAnalystPageObject/AdditionalInfoPage");
 
 setDefaultTimeout(60 * 1000);
 
@@ -15,7 +15,7 @@ let PersonalAnalystPage;
 let AnalystPage;
 
 Given(
-  "I  pass the credentials {string} and {string}",
+  "pass the credentials{string} and {string}",
   async (username, password) => {
     browser = await chromium.launch({ headless: false, slowMo: 50 });
     context = await browser.newContext({ ignoreHTTPSErrors: true });
@@ -27,8 +27,8 @@ Given(
   }
 );
 
-When("I cross check  the values", async () => {
-  AnalystPage = new BusinessAnalyst(page);
+When("Verify the values", async () => {
+  AnalystPage = new BusinessAdditionalinformation(page);
   await AnalystPage.nextwork();
   const { loanAmount, tenurePeriod } = await AnalystPage.validate();
 
@@ -49,9 +49,9 @@ When("I cross check  the values", async () => {
 });
 
 Then(
-  "I Pass personal loan analyst feedback {string}, {string}",
+  "Pass the personal loan analyst feedback {string}, {string}",
   async (feedback, decision) => {
-    AnalystPage = new BusinessAnalyst(page);
+    AnalystPage = new BusinessAdditionalinformation(page);
     await AnalystPage.Approve(feedback, decision);
     await context.close();
   }
