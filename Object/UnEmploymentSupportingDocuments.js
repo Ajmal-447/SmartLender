@@ -16,9 +16,11 @@ class UnEmploymentSupportingDocumentPage {
     await this.BankDetails.setInputFiles(
       "C:/Users/AjmalbashaAllabasha/Desktop/Smart Lender/tests/test image2.png"
     );
+    await this.page.waitForTimeout(3000);
     await this.DocumentforAddressConfirmation.setInputFiles(
       "C:/Users/AjmalbashaAllabasha/Desktop/Smart Lender/tests/test image2.png"
     );
+    await this.page.waitForTimeout(3000);
     await this.IncomeProof.setInputFiles(
       "C:/Users/AjmalbashaAllabasha/Desktop/Smart Lender/tests/test image2.png"
     );

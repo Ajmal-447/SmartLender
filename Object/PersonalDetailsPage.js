@@ -22,10 +22,10 @@ class PersonalDetailsPage {
 
     this.state = this.page.getByLabel("State ");
     this.address = this.page.locator(
-      '[data-testid="AddressLine1:input:control"]'
+      '[data-testid="Address Line 1:input:control"]'
     );
     this.address1 = this.page.locator(
-      '[data-testid="AddressLine2:input:control"]'
+      '[data-testid="Address Line 2:input:control"]'
     );
     this.city = this.page.locator('[data-testid="City/Town:input:control"]');
     this.zipcode = this.page.locator('[data-testid="Zip Code:input:control"]');
@@ -55,7 +55,6 @@ class PersonalDetailsPage {
     zipcode,
     SSNnumber
   ) {
-    // Convert all inputs to strings
     await this.firstName.fill(String(firstname));
     await this.lastName.fill(String(lastname));
     await this.Gender.selectOption(String(Gender));
@@ -73,15 +72,14 @@ class PersonalDetailsPage {
     await this.zipcode.fill(String(zipcode));
     await this.SSNnumber.fill(String(SSNnumber));
 
-    // File uploads
     await this.SSNFile.setInputFiles(
       "C:/Users/AjmalbashaAllabasha/Desktop/Smart Lender/tests/test image2.png"
     );
+    await this.page.waitForTimeout(3000);
     await this.Passport.setInputFiles(
       "C:/Users/AjmalbashaAllabasha/Desktop/Smart Lender/tests/test image2.png"
     );
 
-    // Submit
     await this.submitButton.click();
   }
 }

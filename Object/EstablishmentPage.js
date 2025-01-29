@@ -9,7 +9,7 @@ class EstablishmentPage {
     );
     this.state1 = this.page.getByLabel("State ");
     this.address2 = this.page.locator(
-      '[data-testid="Address Line 1:input:control"]'
+      '[data-testid="Address Line 1 :input:control"]'
     );
     this.address3 = this.page.locator(
       '[data-testid="Address Line 2:input:control"]'
@@ -28,6 +28,9 @@ class EstablishmentPage {
     this.Year = this.page.locator('[data-testid=":date-input:control-year"]');
     this.TaxIDNumber = this.page.locator(
       '[data-testid="Tax ID Number:number-input:control"]'
+    );
+    this.DUNSNumber = this.page.locator(
+      '[data-testid="DUNS Number:number-input:control"]'
     );
     this.TypeofBusiness = this.page.getByLabel("Type of Business Entity");
     this.button1 = this.page.locator('[aria-label="Add a new record"]');
@@ -50,7 +53,7 @@ class EstablishmentPage {
     this.Businessemail1 = this.page.locator(
       "xpath=/html/body/app-root/div/div[1]/div/main/div/div/div[2]/div[1]/div[2]/div/article/div/li/form/div[1]/div[2]/div/fieldset/div/div/div/div[2]/div/div/div/article/div/div/div[3]/div/div[3]/div/div/div[7]/span/span/span/div/input"
     );
-    this.submitButton = this.page.locator(".sc-bqWxrE.fKpSOq");
+    this.submitButton = this.page.getByRole("button", { name: "Next" });
   }
 
   async establishmentdetails(
@@ -68,6 +71,7 @@ class EstablishmentPage {
     Month,
     Year,
     TaxIDNumber,
+    DUNSNumber,
     TypeofBusiness,
     Name,
     Title,
@@ -91,6 +95,7 @@ class EstablishmentPage {
     await this.Month.fill(Month.toString());
     await this.Year.fill(Year.toString());
     await this.TaxIDNumber.fill(TaxIDNumber.toString());
+    await this.DUNSNumber.fill(DUNSNumber);
     await this.TypeofBusiness.selectOption(TypeofBusiness);
     await this.button1.click();
     await this.Name.fill(Name);
