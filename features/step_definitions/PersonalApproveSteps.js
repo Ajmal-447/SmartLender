@@ -24,9 +24,9 @@ Given("I am sent {string} and {string}", async (username, password) => {
   console.log("Login successful.");
 });
 
-When("I want to verify the values", async () => {
+When("I want to verify the values {string}", async (CaseID) => {
   AnalystPage = new PersoanlApprove(page);
-  await AnalystPage.nextwork();
+  await AnalystPage.nextwork(CaseID);
   const { loanAmount, tenurePeriod } = await AnalystPage.validate();
 
   console.log("Loan Amount (actual):", loanAmount);
@@ -35,14 +35,14 @@ When("I want to verify the values", async () => {
   const chai = await import("chai");
   const { expect } = chai;
 
-  // expect(loanAmount).to.equal(
-  //   "50,000",
-  //   `Expected loanAmount to be "50,000", but got "${loanAmount}"`
-  // );
-  // expect(tenurePeriod).to.equal(
-  //   "32",
-  //   `Expected tenurePeriod to be "32", but got "${tenurePeriod}"`
-  // );
+  expect(loanAmount).to.equal(
+    "10,000",
+    `Expected loanAmount to be "10,000", but got "${loanAmount}"`
+  );
+  expect(tenurePeriod).to.equal(
+    "52",
+    `Expected tenurePeriod to be "52", but got "${tenurePeriod}"`
+  );
 });
 
 Then(

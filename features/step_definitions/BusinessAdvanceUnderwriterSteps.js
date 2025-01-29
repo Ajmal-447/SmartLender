@@ -24,28 +24,28 @@ Given(
     await BusinessAnalystPage.goto();
     await BusinessAnalystPage.Validlogin(username, password);
     console.log("Login successful.");
+    // Write code here that turns the phrase above into concrete actions
   }
 );
 
-When("verify the values", async () => {
+When("verify the values {string}", async (CaseID) => {
   AnalystPage = new BusinessAnalystUnderWriting(page);
-  await AnalystPage.nextwork();
+  await AnalystPage.nextwork(CaseID);
   const { loanAmount, tenurePeriod } = await AnalystPage.validate();
 
   console.log("Loan Amount (actual):", loanAmount);
   console.log("Tenure Period (actual):", tenurePeriod);
-
   const chai = await import("chai");
   const { expect } = chai;
 
-  //expect(loanAmount).to.equal(
-  //"10,000",
-  //`Expected loanAmount to be "10,000", but got "${loanAmount}"`
-  //);
-  //expect(tenurePeriod).to.equal(
-  //"50",
-  //`Expected tenurePeriod to be "50", but got "${tenurePeriod}"`
-  //);
+  expect(loanAmount).to.equal(
+    "10,000",
+    `Expected loanAmount to be "10,000", but got "${loanAmount}"`
+  );
+  expect(tenurePeriod).to.equal(
+    "50",
+    `Expected tenurePeriod to be "50", but got "${tenurePeriod}"`
+  );
 });
 
 Then(
@@ -54,5 +54,6 @@ Then(
     AnalystPage = new BusinessAnalystUnderWriting(page);
     await AnalystPage.Approve(feedback, decision);
     await context.close();
+    await browser.close();
   }
 );

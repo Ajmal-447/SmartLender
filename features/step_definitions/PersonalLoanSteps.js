@@ -13,8 +13,7 @@ const {
   SupportingDocumentPage,
 } = require("../../Object/SupportingDocumentPage");
 
-// Set default timeout to 60 seconds
-setDefaultTimeout(60 * 1000);
+setDefaultTimeout(300 * 1000);
 
 let browser, context, page;
 let loginpage,
@@ -140,7 +139,6 @@ When(
   }
 );
 
-
 When(
   "I enter financial details {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}",
   async (
@@ -174,10 +172,17 @@ When(
 );
 
 // Step: Submit supporting documents
-Then("I submit the supporting documents", async () => {
+Then("I submit the supporting documents", { timeout: 300 * 1000 }, async () => {
   console.log("Submitting supporting documents.");
   supportingDocumentPage = new SupportingDocumentPage(page);
   await supportingDocumentPage.SupportingInfo();
   console.log("Supporting documents submitted. Closing browser.");
-  await context.close();
+  const { CaseID } = await supportingDocumentPage.CaseIDValue();
+  console.log("CaseID (actual):", CaseID);
+  await supportingDocumentPage.Submit();
+  console.log("Supporting documents submitted.");
+  const { MAil } = await supportingDocumentPage.validateAcknowledgementPage();
+  console.log("Email (actual):", MAil);
+
+  //await context.close();
 });

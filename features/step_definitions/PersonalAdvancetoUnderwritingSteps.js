@@ -38,14 +38,14 @@ When("I need to verify the values", async () => {
   const chai = await import("chai");
   const { expect } = chai;
 
-  // expect(loanAmount).to.equal(
-  //   "50,000",
-  //   `Expected loanAmount to be "50,000", but got "${loanAmount}"`
-  // );
-  // expect(tenurePeriod).to.equal(
-  //   "32",
-  //   `Expected tenurePeriod to be "32", but got "${tenurePeriod}"`
-  // );
+  expect(loanAmount).to.equal(
+    "50,000",
+    `Expected loanAmount to be "50,000", but got "${loanAmount}"`
+  );
+  expect(tenurePeriod).to.equal(
+    "32",
+    `Expected tenurePeriod to be "32", but got "${tenurePeriod}"`
+  );
 });
 
 Then(

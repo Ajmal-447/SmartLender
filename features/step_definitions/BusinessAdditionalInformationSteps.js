@@ -15,7 +15,7 @@ let PersonalAnalystPage;
 let AnalystPage;
 
 Given(
-  "pass the credentials{string} and {string}",
+  "pass the credentials {string} and {string}",
   async (username, password) => {
     browser = await chromium.launch({ headless: false, slowMo: 50 });
     context = await browser.newContext({ ignoreHTTPSErrors: true });
@@ -27,9 +27,9 @@ Given(
   }
 );
 
-When("Verify the values", async () => {
+When("Verify the values {string}", async (CaseID) => {
   AnalystPage = new BusinessAdditionalinformation(page);
-  await AnalystPage.nextwork();
+  await AnalystPage.nextwork(CaseID);
   const { loanAmount, tenurePeriod } = await AnalystPage.validate();
 
   console.log("Loan Amount (actual):", loanAmount);
@@ -38,14 +38,14 @@ When("Verify the values", async () => {
   const chai = await import("chai");
   const { expect } = chai;
 
-  // expect(loanAmount).to.equal(
-  //   "10,000",
-  //   `Expected loanAmount to be "10,000", but got "${loanAmount}"`
-  // );
-  // expect(tenurePeriod).to.equal(
-  //   "50",
-  //   `Expected tenurePeriod to be "50", but got "${tenurePeriod}"`
-  // );
+  expect(loanAmount).to.equal(
+    "10,000",
+    `Expected loanAmount to be "10,000", but got "${loanAmount}"`
+  );
+  expect(tenurePeriod).to.equal(
+    "50",
+    `Expected tenurePeriod to be "50", but got "${tenurePeriod}"`
+  );
 });
 
 Then(

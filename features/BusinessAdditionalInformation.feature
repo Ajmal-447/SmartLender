@@ -1,10 +1,13 @@
 Feature: Business Loan Analyst
 
-Scenario Outline: Verify personal loan application details
+Scenario Outline: Verify Business loan application details
   Given pass the credentials "<Username>" and "<Password>"
-  When Verify the values
+  When Verify the values "<CaseID>"
   Then Pass the personal loan analyst feedback "<feedback>", "<Decision>"
 
 Examples:
-    | Username   | Password  | feedback | Decision                      |
-    | Manager@bl1 | rules@222 | Test     | Request Additional Information |
+
+    | Username    | Password   | CaseID|feedback | Decision                       |
+    | Manager@bl1 | rules@555  | 11044 |Test     | Request Additional Information |
+
+

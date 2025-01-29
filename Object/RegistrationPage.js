@@ -14,6 +14,7 @@ class RegistrationPage {
     this.emailid = this.page.locator(
       "xpath=/html/body/app-root/div/div[1]/div/main/div/div/div[2]/div[1]/div[2]/div/article/div/li/form/div[1]/div[2]/div/fieldset/div/div/div/div/fieldset/div/div/div/div[1]/div[4]/div/input"
     );
+    this.SSN = this.page.locator('[data-testid="SSN:number-input:control"]');
     this.country = this.page.locator('[data-testid="Country :select:control"]');
     this.address = this.page.locator(
       '[data-testid="Address Line 1 :input:control"]'
@@ -24,7 +25,7 @@ class RegistrationPage {
     this.city = this.page.locator('[data-testid="City/Town:input:control"]');
     this.state = this.page.getByLabel("State ");
     this.zipcode = this.page.locator('[data-testid="Zip Code:input:control"]');
-    this.submitButton = this.page.locator(".sc-bqWxrE.fKpSOq");
+    this.submitButton = this.page.getByRole("button", { name: "Next" });
   }
 
   async userdetails(
@@ -33,6 +34,7 @@ class RegistrationPage {
     countrycode,
     phonenumber,
     emailid,
+    SSN,
     country,
     state,
     address,
@@ -45,12 +47,14 @@ class RegistrationPage {
     await this.countrycode.selectOption(countrycode);
     await this.phonenumber.fill(phonenumber.toString());
     await this.emailid.fill(emailid.toString());
+    await this.SSN.fill(SSN);
     await this.country.selectOption(country);
     await this.state.selectOption(state);
     await this.address.fill(address);
     await this.address1.fill(address1);
     await this.city.fill(city);
     await this.zipcode.fill(zipcode.toString());
+    await this.page.waitForTimeout(3000); // Waits for 3 seconds
     await this.submitButton.click();
   }
 }

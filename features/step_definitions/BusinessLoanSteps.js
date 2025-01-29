@@ -7,7 +7,7 @@ const { EstablishmentPage } = require("../../Object/EstablishmentPage");
 const { Financialpage } = require("../../Object/FinancialPage");
 const { Acknowledgementpage } = require("../../Object/AcknowledgementPage");
 // Set default timeout to 60 seconds
-setDefaultTimeout(60 * 1000);
+setDefaultTimeout(200 * 1000);
 
 // Browser context and pages
 let page, context;
@@ -46,13 +46,14 @@ When(
 );
 
 When(
-  "I fill user registration details {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}",
+  "I fill user registration details {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}",
   async function (
     firstname,
     lastname,
     countrycode,
     phonenumber,
     emailid,
+    SSN,
     country,
     state,
     address,
@@ -69,6 +70,7 @@ When(
       countrycode,
       phonenumber,
       emailid,
+      SSN,
       country,
       state,
       address,
@@ -80,7 +82,7 @@ When(
 );
 
 When(
-  "I fill establishment details {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}",
+  "I fill establishment details {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}",
   async function (
     BusinessName,
     country1,
@@ -96,6 +98,7 @@ When(
     Month,
     Year,
     TaxIDNumber,
+    DUNSNumber,
     TypeofBusiness,
     Name,
     Title,
@@ -122,6 +125,7 @@ When(
       Month,
       Year,
       TaxIDNumber,
+      DUNSNumber,
       TypeofBusiness,
       Name,
       Title,
@@ -135,20 +139,21 @@ When(
 );
 
 When(
-  "I fill financial details {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}",
+  "I fill financial details {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}",
   async function (
     AnnualRevenue,
     NetProfit,
     TotalAssets,
     TotalLiabilities,
+    Rent,
+    PropertyTax,
+    Expensense,
+    ExestingLoan,
+    OutstandingLoan,
+    LoanAmount,
+    LenderName,
     BankName,
-    AccountNumber,
-    country2,
-    state2,
-    AddressLine1,
-    AddressLine2,
-    City2,
-    zipcode2
+    AccountNumber
   ) {
     console.log(`Filling financial details for ${AnnualRevenue}`);
     financialPage = new Financialpage(page);
@@ -157,14 +162,15 @@ When(
       NetProfit,
       TotalAssets,
       TotalLiabilities,
+      Rent,
+      PropertyTax,
+      Expensense,
+      ExestingLoan,
+      OutstandingLoan,
+      LoanAmount,
+      LenderName,
       BankName,
-      AccountNumber,
-      country2,
-      state2,
-      AddressLine1,
-      AddressLine2,
-      City2,
-      zipcode2
+      AccountNumber
     );
   }
 );
@@ -173,6 +179,24 @@ Then("I verify acknowledgement page", async () => {
   console.log("Submitting documents.");
   acknowledgementPage = new Acknowledgementpage(page);
   await acknowledgementPage.Acknowledgementinfo();
-  console.log("Supporting documents submitted. Closing browser.");
-  await context.close();
+  const { CaseID } = await acknowledgementPage.CaseIDValue();
+  console.log("CaseID (actual):", CaseID);
+  await acknowledgementPage.Submit();
+  console.log("Supporting documents submitted.");
+
+  const { MAil } = await acknowledgementPage.validateAcknowledgementPage();
+  console.log("Email (actual):", MAil);
+
+  //await context.close();
+  //const { loanAmount } = await AnalystPage.validate();
+
+  // AnalystPage = new BusinessReject(page);
+  // await AnalystPage.nextwork();
+  // const { loanAmount, tenurePeriod } = await AnalystPage.validate();
+
+  // console.log("Loan Amount (actual):", loanAmount);
+  // console.log("Tenure Period (actual):", tenurePeriod);
+
+  // const chai = await import("chai");
+  // const { expect } = chai;
 });
